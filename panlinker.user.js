@@ -559,29 +559,9 @@
         },
 
         async initDialog() {
-            let result = await Swal.fire({
-                title: pan.init[0],
-                html: `<div><img style="width: 250px;margin-bottom: 10px;" src="${pan.img}" alt="${pan.img}"><input class="swal2-input" id="init" type="text" placeholder="${pan.init[1]}"></div>`,
-                allowOutsideClick: false,
-                showCloseButton: true,
-                confirmButtonText: '确定'
-            });
-            if (result.isDismissed && result.dismiss === 'close') return;
-            if (pan.num === $('#init').val()) {
-                base.setValue('setting_init_code', pan.num);
-                message.success(pan.init[2]);
-                setTimeout(() => {
-                    history.go(0);
-                }, 1500);
-            } else {
-                await Swal.fire({
-                    title: pan.init[3],
-                    text: pan.init[4],
-                    confirmButtonText: '重新输入',
-                    imageUrl: pan.img,
-                });
-                await this.initDialog();
-            }
+            base.setValue('setting_init_code', pan.num);
+            message.success(pan.init[2]);
+            history.go(0)
         },
     };
 
@@ -2051,7 +2031,7 @@
                     let alink = this.convertLinkToBC(dlink, filename, navigator.userAgent);
                     content += `<div class="pl-item">
                                 <div class="pl-item-name listener-tip" data-size="${size}">${filename}</div>
-                                <a class="pl-item-link" href="${decodeURIComponent(alink)}" title="点击用比特彗星下载" data-filename="${filename}" data-link="${alink}">${decodeURIComponent(alink)}</a> 
+                                <a class="pl-item-link" href="${decodeURIComponent(alink)}" title="点击用比特彗星下载" data-filename="${filename}" data-link="${alink}">${decodeURIComponent(alink)}</a>
                                 <div class="pl-item-btn listener-link-bc-btn" data-dlink="${dlink}">复制镜像地址</div>
                                 </div>`;
                 }
